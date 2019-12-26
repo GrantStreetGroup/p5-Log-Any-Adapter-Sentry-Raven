@@ -30,7 +30,8 @@ object, it will be picked up here eg.
 
     $sentry->add_context( Sentry::Raven->request_context($url, %p) )
 
-If L<Devel::StackTrace> is installed, this will add a stack trace for you.
+If L<Devel::StackTrace> is installed, this will add a stack trace for you
+(As of writing, L<Sentry::Raven> requires it, so it will be).
 
 =item log_level (OPTIONAL)
 
