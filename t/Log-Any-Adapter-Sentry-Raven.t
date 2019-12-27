@@ -87,17 +87,42 @@ subtest test_logging => sub {
 
     my ($_invocant, $message, %context) = @$args;
     is $message, $Message, "sentry logged right message";
-    my $stack_trace = delete $context{'sentry.interfaces.Stacktrace'};
+    delete $context{'sentry.interfaces.Stacktrace'};
     {
         local $Data::Dumper::Maxdepth = 3;
         is_deeply(
             \%context,
             {
-                level => 'error'
+                level => 'error',
+                tags  => {},
             },
             "logged expected context",
         )
             or diag(Dumper \%context);
+    }
+
+    my $stack_trace;
+    {
+        local $log->context->{foo} = 'bar';
+        $log->error($Message);
+        my ($name, $args) = $mock_sentry->next_call();
+        is $name, $CAPTURE, "$CAPTURE called again";
+
+        my ($_invocant, $message, %context) = @$args;
+        is $message, $Message, "sentry message did not include foo/bar";
+        $stack_trace = delete $context{'sentry.interfaces.Stacktrace'};
+        {
+            local $Data::Dumper::Maxdepth = 3;
+            is_deeply(
+                \%context,
+                {
+                    level => 'error',
+                    tags  => { foo => 'bar' },
+                },
+                "Log::Any context included as Sentry tags"
+            )
+                or diag(Dumper \%context);
+        }
     }
 
     test_needs 'Devel::StackTrace';

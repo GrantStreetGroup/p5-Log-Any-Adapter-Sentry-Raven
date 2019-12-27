@@ -39,6 +39,8 @@ The minimum log_level to log. Defaults to C<trace> (everything).
 
 =back
 
+Any L<Log::Any/Log context data> will be sent to Sentry as tags.
+
 =head1 SEE ALSO
 
 L<Log::Any>, L<Sentry::Raven>
@@ -82,9 +84,9 @@ sub structured {
     my $is_level = "is_$level";
     return unless $self->$is_level;
 
-    my $context = {};
+    my $log_any_context = {};
     if ((ref $log_args[-1]) eq 'HASH') {
-        $context = pop @log_args;
+        $log_any_context = pop @log_args;
     }
 
     my $log_message = join "\n" => @log_args;
@@ -99,6 +101,7 @@ sub structured {
     my @message_args = (
         $log_message,
         level => $sentry_severity,
+        tags  => $log_any_context,
     );
     if ($Include_Stack_Trace) {
         push @message_args,
