@@ -55,7 +55,3 @@ This software is Copyright (c) 2019 - 2020 by Grant Street Group.
 This is free software, licensed under:
 
     The Artistic License 2.0 (GPL Compatible)
-
-# CONTRIBUTOR
-
-Jonathan Rubin <jon.rubin@grantstreet.com>
