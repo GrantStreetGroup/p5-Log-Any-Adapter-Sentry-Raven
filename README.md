@@ -4,7 +4,7 @@ Log::Any::Adapter::Sentry::Raven - Log::Any::Adapter for Sentry::Raven
 
 # VERSION
 
-version v0.0.1
+version v0.0.2
 
 # DESCRIPTION
 
