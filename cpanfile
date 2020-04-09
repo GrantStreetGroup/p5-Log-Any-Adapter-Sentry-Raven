@@ -1,4 +1,5 @@
 requires 'Devel::StackTrace';
+requires 'Devel::StackTrace::Extract';
 requires 'Log::Any::Adapter::Base', '1.708';
 requires 'Log::Any::Adapter::Util';
 requires 'Sentry::Raven';
