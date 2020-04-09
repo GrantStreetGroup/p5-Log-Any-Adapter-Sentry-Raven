@@ -9,7 +9,6 @@ use Log::Any qw($log);
 use Log::Any::Adapter;
 use Test::Fatal qw(exception);
 use Test::MockObject;
-use Test::Needs;
 
 BEGIN { use_ok('Log::Any::Adapter::Sentry::Raven') };
 
@@ -125,7 +124,6 @@ subtest test_logging => sub {
         }
     }
 
-    test_needs 'Devel::StackTrace';
     ok $stack_trace->{frames}, "stack trace included with Devel::StackTrace";
 };
 

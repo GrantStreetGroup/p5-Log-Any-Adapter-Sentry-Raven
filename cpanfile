@@ -1,10 +1,10 @@
+requires 'Devel::StackTrace';
 requires 'Log::Any::Adapter::Base', '1.708';
 requires 'Log::Any::Adapter::Util';
 requires 'Sentry::Raven';
 
 on develop => sub {
     requires 'Dist::Zilla::PluginBundle::Author::GSG';
-    requires 'Devel::StackTrace';
 };
 
 on test => sub {
@@ -13,6 +13,4 @@ on test => sub {
     requires 'Log::Any::Adapter';
     requires 'Test::Fatal';
     requires 'Test::MockObject';
-    requires 'Test::Needs';
-    requires 'Test::Without::Module';
 };

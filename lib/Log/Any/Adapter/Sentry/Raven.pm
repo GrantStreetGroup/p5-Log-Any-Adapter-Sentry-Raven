@@ -30,8 +30,7 @@ object, it will be picked up here eg.
 
     $sentry->add_context( Sentry::Raven->request_context($url, %p) )
 
-If L<Devel::StackTrace> is installed, this will add a stack trace for you
-(As of writing, L<Sentry::Raven> requires it, so it will be).
+This will add a stack trace as well using L<Devel::StackTrace>.
 
 =item log_level (OPTIONAL)
 
@@ -51,6 +50,7 @@ use strict;
 use warnings;
 
 use Carp qw(carp croak);
+use Devel::StackTrace;
 use Log::Any::Adapter::Util qw(make_method numeric_level);
 use Scalar::Util qw(blessed);
 use Sentry::Raven;
@@ -77,7 +77,6 @@ sub init {
     }
 }
 
-my $Include_Stack_Trace = do { eval { require Devel::StackTrace; 1 } };
 sub structured {
     my ($self, $level, $category, @log_args) = @_;
 
@@ -102,11 +101,8 @@ sub structured {
         $log_message,
         level => $sentry_severity,
         tags  => $log_any_context,
+        Sentry::Raven->stacktrace_context(Devel::StackTrace->new)
     );
-    if ($Include_Stack_Trace) {
-        push @message_args,
-             Sentry::Raven->stacktrace_context(Devel::StackTrace->new)
-    }
 
     # https://docs.sentry.io/data-management/event-grouping/
     $self->{sentry}->capture_message( @message_args );
