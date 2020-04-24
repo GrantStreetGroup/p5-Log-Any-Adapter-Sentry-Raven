@@ -16,7 +16,7 @@ BEGIN { use_ok('Log::Any::Adapter::Sentry::Raven') };
     package My::Test::Exception;
     use overload '""' => sub { ${ shift() } };
 
-    our $WEIRD_TRACE = 1;
+    our $WEIRD_TRACE = 0;
 
     sub new {
         my ($class, $message) = @_;
