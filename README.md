@@ -4,14 +4,14 @@ Log::Any::Adapter::Sentry::Raven - Log::Any::Adapter for Sentry::Raven
 
 # VERSION
 
-version v0.0.3
+version v0.0.4
 
 # DESCRIPTION
 
-This is a backend to [Log::Any](https://metacpan.org/pod/Log::Any) for [Sentry::Raven](https://metacpan.org/pod/Sentry::Raven).
+This is a backend to [Log::Any](https://metacpan.org/pod/Log%3A%3AAny) for [Sentry::Raven](https://metacpan.org/pod/Sentry%3A%3ARaven).
 
-When logging, it does its best to provide a [Devel::StackTrace](https://metacpan.org/pod/Devel::StackTrace) to
-identify your message. To accomplish this, it uses [Devel::StackTrace::Extract](https://metacpan.org/pod/Devel::StackTrace::Extract)
+When logging, it does its best to provide a [Devel::StackTrace](https://metacpan.org/pod/Devel%3A%3AStackTrace) to
+identify your message. To accomplish this, it uses [Devel::StackTrace::Extract](https://metacpan.org/pod/Devel%3A%3AStackTrace%3A%3AExtract)
 to pull a trace from your message (if you pass multiple message arguments, it
 won't attempt this).
 Failing that, it will append a new `Devel::StackTrace`.
@@ -20,7 +20,7 @@ It takes two arguments:
 
 - sentry (REQUIRED)
 
-    An instantiated [Sentry::Raven](https://metacpan.org/pod/Sentry::Raven) object.
+    An instantiated [Sentry::Raven](https://metacpan.org/pod/Sentry%3A%3ARaven) object.
     Note that if you set any sentry-specific context directly through the sentry
     object, it will be picked up here eg.
 
@@ -30,7 +30,7 @@ It takes two arguments:
 
     The minimum log\_level to log. Defaults to `trace` (everything).
 
-Any ["Log context data" in Log::Any](https://metacpan.org/pod/Log::Any#Log-context-data) will be sent to Sentry as tags.
+Any ["Log context data" in Log::Any](https://metacpan.org/pod/Log%3A%3AAny#Log-context-data) will be sent to Sentry as tags.
 
 # SYNPOSIS
 
@@ -45,11 +45,11 @@ Any ["Log context data" in Log::Any](https://metacpan.org/pod/Log::Any#Log-conte
 
 # SEE ALSO
 
-[Log::Any](https://metacpan.org/pod/Log::Any), [Sentry::Raven](https://metacpan.org/pod/Sentry::Raven)
+[Log::Any](https://metacpan.org/pod/Log%3A%3AAny), [Sentry::Raven](https://metacpan.org/pod/Sentry%3A%3ARaven)
 
 # AUTHOR
 
-Grant Street Group &lt;developers@grantstreet.com>
+Grant Street Group <developers@grantstreet.com>
 
 # COPYRIGHT AND LICENSE
 
